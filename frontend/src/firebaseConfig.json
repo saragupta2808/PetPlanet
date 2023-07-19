@@ -1,0 +1,10 @@
+{
+    "apiKey": "{{API_KEY}}",
+    "authDomain": "{{AUTH_DOMAIN}}",
+    "projectId": "{{PROJECT_ID}}",
+    "storageBucket": "pet-planet-5cf3d.appspot.com",
+    "messagingSenderId": "{{SENDER_ID}}",
+    "appId": "{{APP_ID}}",
+    "measurementId": "G-4CRB1WJPSS"
+}
+  

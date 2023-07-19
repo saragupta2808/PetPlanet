@@ -1,0 +1,22 @@
+{
+  "name": "pet-planet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "cd backend && npm install  && cd ../frontend  && npm install --force && npm run build",
+    "start": "node backend/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saragupta2808/PetPlanet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saragupta2808/PetPlanet/issues"
+  },
+  "homepage": "https://github.com/saragupta2808/PetPlanet#readme"
+}
