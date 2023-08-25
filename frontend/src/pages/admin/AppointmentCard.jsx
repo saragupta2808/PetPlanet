@@ -34,8 +34,9 @@ const AppointmentCard = (props) => {
   const date = new Date(props.timestamp);
   const month = date.toLocaleString("default", { month: "short" });
   const day = date.getDate();
-
+  // console.log(props.petFile);
   return (
+    
     <>
       <div className="appointment-card ">
         <div className="appointment-card-header no-border">
@@ -88,6 +89,10 @@ const AppointmentCard = (props) => {
                   <span className="profile-heading">Service required:</span>
                   <span className="cc-bigger-light ms-1">{props.service}</span>
                 </li>
+                {props.petFile && <li className="widget-49-meeting-item">
+                  <span className="profile-heading">Pet video/image:</span>
+                  <a href={props.petFile} target="_blank" className="cc-bigger-light ms-1">Click here</a>
+                </li>}
                 {props.needHomeVisit && (
                   <li className="widget-49-meeting-item">
                     <span className="cc-bigger-light">Need Home Visit</span>

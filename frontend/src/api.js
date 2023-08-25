@@ -31,11 +31,53 @@ export async function getAllAppointments() {
   }
 }
 
+export async function getAllPetQueries() {
+  try {
+    const user = await getCurrentUser();
+    if (user) {
+      const accessToken = await user.getIdToken();
+      // console.log(accessToken);
+      const response = await axios.get("/pets/query", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      return response;
+    } else {
+      return {status: 401, data:{msg:'Unauthorized user, please login!'}}
+    }
+  } catch (error) {    
+    return {ststatus:500,atus:500, data:{msg:'Something went wrong, please try again later!'}}
+  }
+}
+
 export async function bookAppointment(formData) {
   try {
     const response = await axios.post(
       "/appointments/bookappointment",
-      formData
+      formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    // return {status: 500, data:{msg:'Something went wrong, please try again later!'}}
+    return error.response;
+  }
+}
+
+export async function submitPetQuery(formData) {
+  try {
+    const response = await axios.post(
+      "/pets/query",
+      formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
     );
     return response;
   } catch (error) {
@@ -85,6 +127,29 @@ export async function deleteAppointment(formData) {
         }
       );
       // console.log("deleted appointmnet is", response);
+      return response;
+    } else {
+      return {status: 401, data:{msg:'Unauthorized user, please login!'}}
+    }
+  } catch (error) {
+    return {status:500, data:{msg:'Something went wrong, please try again later!'}}
+  }
+}
+
+export async function deletePetQuery(formData) {
+  const { queryId } = formData;
+  try {
+    const user = await getCurrentUser();
+    if (user) {
+      const accessToken = await user.getIdToken();
+      const response = await axios.delete(
+        `/pets/query/${queryId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
       return response;
     } else {
       return {status: 401, data:{msg:'Unauthorized user, please login!'}}

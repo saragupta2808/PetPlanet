@@ -38,12 +38,15 @@ const AppointmentSchema = new mongoose.Schema({
     },
     petAge:{
         type:Number,
-        
+        min:0,
     },
     petAgeQuant:{
         type: String,
         enum: ['Years', 'Months', 'Days'],
         
+    },
+    petFile:{
+        type: [String],
     },
     isCompleted: {
        type: Boolean,

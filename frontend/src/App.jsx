@@ -12,13 +12,16 @@ import BookAppointment, {
 } from "./pages/BookAppointment";
 import ContactUs from "./pages/ContactUs";
 import Services from "./pages/Services";
-import BuyPet from "./pages/BuyPet";
+import BuyPet, {action as petQueryAction} from "./pages/BuyPet";
 import Home from "./pages/Home";
 import Profile, { loader as profileLoader } from "./pages/Profile";
 import AdminLayout, { loader as adminLoader } from "./components/AdminLayout";
 import Appointments, {
   loader as appointmentLoader,
 } from "./pages/admin/Appointments";
+import PetQueries, {
+  loader as queryLoader,
+} from "./pages/admin/PetQueries";
 
 import Getapet, { loader as petLoader } from "./pages/admin/Getapet";
 
@@ -34,7 +37,7 @@ const router = createBrowserRouter(
         />
         <Route path="contact" element={<ContactUs />} />
         <Route path="services" element={<Services />} />
-        <Route path="buyapet" element={<BuyPet />} />
+        <Route path="buyapet" element={<BuyPet />} action={petQueryAction}/>
 
         <Route
           path="profile/:userId"
@@ -60,6 +63,7 @@ const router = createBrowserRouter(
         />
 
         <Route path="getapet" element={<Getapet />} loader={petLoader} />
+        <Route path="queries" element={<PetQueries/>} loader={queryLoader}/>
       </Route>
     </>
   )

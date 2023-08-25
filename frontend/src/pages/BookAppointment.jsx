@@ -16,7 +16,21 @@ export async function action({ request }) {
   const petCategory = bookingData.get("petCategory");
   const petAge = bookingData.get("petAge");
   const petAgeQuant = bookingData.get("petAgeQuant");
-  
+  const petFile = bookingData.get("petFile")
+  console.log('Pet File is', petFile)
+  // try {
+  //   const response = await axios.post('/fileupload', {
+  //     petFile: petFile
+  //   }, {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //     },
+  //   })
+  //   console.log(response)
+  // } catch (error) {
+  //   console.log('File uploading failed at API call', error)
+  // }
+  // return null;
   try {
     if(!ownerName || !contact || !address || !petCategory){
       throw new Error("Please fill all the required fields");
@@ -31,6 +45,7 @@ export async function action({ request }) {
       petCategory: petCategory,
       petAge: petAge,
       petAgeQuant: petAgeQuant,
+      petFile: petFile, 
     });
 
     // console.log(response);
@@ -39,7 +54,9 @@ export async function action({ request }) {
       if (msg.includes("validation")) {
         throw new Error("Invalid details");
       }
-      return null;
+      else
+        throw new Error('Some error occurred!')
+     
     } else {
       toast.success("Appointment booked successfully", {
         position: "top-right",
@@ -162,7 +179,7 @@ export default function BookAppointment() {
       <div className="home-container">
         <div className="appointment-form-wrap">
           <div className="appointment-form">
-            <Form method="post" id="appointmentForm">
+            <Form method="post" id="appointmentForm" encType="multipart/form-data">
               <div className="form-group">
                 <label htmlFor="ownerName" className="required-field">
                   Owner Name
@@ -186,6 +203,7 @@ export default function BookAppointment() {
                   placeholder="Enter 10 digit phone number"
                   id="contact"
                   name="contact"
+                  maxLength={10}
                 ></input>
               </div>
               <br />
@@ -258,6 +276,7 @@ export default function BookAppointment() {
                     className="form-control form-field"
                     placeholder="Pet age"
                     name="petAge"
+                    min={'0'}
                   ></input>
                   <select
                     className="form-select form-field"
@@ -280,6 +299,16 @@ export default function BookAppointment() {
                   placeholder="Enter your pet's name"
                   id="petName"
                   name="petName"
+                ></input>
+              </div>
+              <br />
+              <div className="form-group">
+                <label htmlFor="petFile">Upload image/video</label>
+                <input
+                  type="file"
+                  className="form-control form-field"
+                  id="petFile"
+                  name="petFile"
                 ></input>
               </div>
               <br />

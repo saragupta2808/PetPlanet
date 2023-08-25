@@ -340,6 +340,17 @@ header a:hover {
   max-height: 25rem;
 }
 
+.pet-query-card-body{
+  padding: 8px;
+  display: flex;
+  color: #001c5a;
+  flex-direction: column;
+  justify-content: space-between;
+ 
+  min-height: 15rem;
+  max-height: 25rem
+}
+
 
 .appointment-card-footer{
   display: flex;
@@ -1298,4 +1309,9 @@ contact page */
   .profile-edit{
     flex-direction: column;
   }
+ }
+
+
+ .form-check{
+  margin-right: 10px;
  }

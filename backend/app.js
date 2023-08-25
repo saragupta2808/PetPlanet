@@ -15,6 +15,11 @@ const appointmentRouter = require("./routes/appointments");
 const userRouter = require("./routes/user");
 const petRouter = require("./routes/pets");
 
+const port = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use(cors());
+
 let parsedData;
 
 const firebasefilePath = path.join(
@@ -57,7 +62,7 @@ fs.readFile(firebasefilePath, "utf8", (err, data) => {
         }
       }
     }
-    console.log(parsedData)
+   
     admin.initializeApp({
       credential: admin.credential.cert(parsedData),
     });
@@ -68,14 +73,38 @@ fs.readFile(firebasefilePath, "utf8", (err, data) => {
   }
 });
 
-const port = process.env.PORT || 3000;
 
-app.use(express.json());
-app.use(cors());
+// ----------------------FILE UPLOAD--------------------------------------------------------------------
+
+// const multer = require('multer')
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, './appointmentUploads')
+//     },
+//     filename: function (req, file, cb) {
+//       const uniqueSuffix = Date.now();
+//       cb(null, file.fieldname + '-' + uniqueSuffix + file.originalname )
+//     }
+//   })
+  
+// const upload = multer({ storage: storage })
+
+
+
+// app.post('/petplanet/v1/fileupload', upload.single('petFile'), function (req, res, next) {
+//   console.log('I just received my file', req.file);
+  
+//   res.send('file received')
+//   // req.file is the `avatar` file
+//   // req.body will hold the text fields, if there were any
+// })
+// --------------------------------------FILE UPLOAD----------------------------------------------------
+
 
 app.use("/petplanet/v1/appointments", appointmentRouter);
 app.use("/petplanet/v1/auth", userRouter);
 app.use("/petplanet/v1/pets", petRouter);
+
 
 // --------------------Deployment---------------------------------------
 

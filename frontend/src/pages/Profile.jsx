@@ -70,7 +70,6 @@ export default function Profile() {
 
   const handleChange = async (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,

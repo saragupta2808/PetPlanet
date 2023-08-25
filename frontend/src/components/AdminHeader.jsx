@@ -145,6 +145,17 @@ export default function AdminHeader() {
               </li>
 
               <li className="nav-item  mx-3 my-2">
+                <NavLink
+                  to="queries"
+                  style={({ isActive }) =>
+                    isActive ? activeStyles : nonactiveStyles
+                  }
+                >
+                  Pet Queries
+                </NavLink>
+              </li>
+
+              <li className="nav-item  mx-3 my-2">
                 {user && (
                   <div className="dropdown">
                     <div

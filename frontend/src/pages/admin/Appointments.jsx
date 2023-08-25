@@ -81,6 +81,7 @@ export default function Appointments() {
               petAge={appointment.petAge}
               petAgeQuant={appointment.petAgeQuant}
               handleDeleteAppointment={handleDeleteAppointment}
+              petFile={appointment.petFile.length >0 ? appointment.petFile[0]:null}
             />
           );
         })
